@@ -1,0 +1,158 @@
+.home {
+  display: grid;
+  gap: var(--mx-s7);
+}
+
+.home-hero {
+  display: grid;
+  gap: var(--mx-s6);
+  align-items: center;
+  padding-top: var(--mx-s4);
+}
+
+.home-hero h1 {
+  max-width: 11ch;
+  font-size: clamp(2.75rem, 11vw, 5.25rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.home-hero__lede {
+  max-width: 46ch;
+  margin-top: var(--mx-s5);
+  color: var(--mx-muted);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mx-s5);
+  margin-top: var(--mx-s6);
+}
+
+.home-setting svg {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.home-setting__glow {
+  fill: var(--mx-surface);
+  animation: home-fade var(--mx-slow) ease 0.5s both;
+}
+
+.home-setting__rim,
+.home-setting__well,
+.home-setting__cutlery {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: home-draw 1.3s var(--mx-ease) forwards;
+}
+
+.home-setting__rim {
+  stroke: var(--mx-accent);
+  stroke-width: 2;
+}
+
+.home-setting__well {
+  stroke: var(--mx-line-strong);
+  stroke-width: 1.5;
+  animation-delay: 0.2s;
+}
+
+.home-setting__cutlery {
+  stroke: var(--mx-muted);
+  stroke-width: 2;
+  animation-delay: 0.45s;
+}
+
+@keyframes home-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes home-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.home-steps ol {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  border-top: 1px solid var(--mx-line);
+}
+
+.home-steps li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  column-gap: var(--mx-s3);
+  padding: var(--mx-s5) 0;
+  border-bottom: 1px solid var(--mx-line);
+  counter-increment: step;
+}
+
+.home-steps li::before {
+  content: counter(step);
+  grid-row: span 2;
+  color: var(--mx-accent-text);
+  font-family: var(--mx-font-display);
+  font-size: 1.75rem;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.home-steps h2 {
+  font-size: 1.375rem;
+}
+
+.home-steps p {
+  max-width: 34ch;
+  margin-top: var(--mx-s1);
+  color: var(--mx-muted);
+}
+
+@media (min-width: 860px) {
+  .home {
+    gap: var(--mx-s8);
+  }
+
+  .home-hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--mx-s7);
+    min-height: 56vh;
+  }
+
+  .home-steps ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--mx-s6);
+  }
+
+  .home-steps li {
+    grid-template-columns: 1fr;
+    border-bottom: 0;
+  }
+
+  .home-steps li::before {
+    grid-row: auto;
+    margin-bottom: var(--mx-s3);
+  }
+}

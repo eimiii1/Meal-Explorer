@@ -1,0 +1,114 @@
+<app-page-header title="Recipes" [showBackButton]="false"></app-page-header>
+
+<ion-content class="recipes-page mx-has-rail">
+  <nav slot="fixed" class="mx-dock" aria-label="Main">
+    <a class="mx-dock__item" routerLink="/home">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-5H9v5H5a1 1 0 0 1-1-1z" />
+      </svg>
+      <span>Home</span>
+    </a>
+    <a class="mx-dock__item" routerLink="/recipes" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 16.5a7 7 0 0 1 14 0M12 9.5V7M3 19.5h18M4 16.5h16" />
+      </svg>
+      <span>Recipes</span>
+    </a>
+    <a class="mx-dock__item" routerLink="/about">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="9" cy="9" r="3" />
+        <path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 6.3a3 3 0 0 1 0 5.4M17.6 14.3a5.5 5.5 0 0 1 2.9 4.7" />
+      </svg>
+      <span>About</span>
+    </a>
+  </nav>
+
+  <main class="mx-page recipes">
+    <section class="finder">
+      <h1>What are you hungry for?</h1>
+      <ion-searchbar
+        class="mx-search"
+        placeholder="Try pasta, curry or tacos"
+        aria-label="Search recipes"
+        [value]="query()"
+        [debounce]="400"
+        (ionInput)="onSearch($event)">
+      </ion-searchbar>
+
+      <div class="ideas" role="group" aria-label="Popular searches">
+        @for (idea of ['Chicken', 'Pasta', 'Beef', 'Salmon', 'Curry', 'Soup', 'Pie', 'Cake']; track idea) {
+          <button
+            type="button"
+            class="idea"
+            [class.is-active]="query().toLowerCase() === idea.toLowerCase()"
+            [attr.aria-pressed]="query().toLowerCase() === idea.toLowerCase()"
+            (click)="query.set(idea); search()">
+            {{ idea }}
+          </button>
+        }
+      </div>
+    </section>
+
+    <section class="results">
+      <div class="results__head">
+        <h2>{{ query() ? 'Recipes for ' + query() : 'Search recipes' }}</h2>
+        @if (!loading() && !errorMsg() && meals().length > 0) {
+          <span class="results__count">{{ meals().length }} recipes</span>
+        }
+      </div>
+
+      @if (loading()) {
+        <div class="mx-state" role="status" aria-live="polite">
+          <ion-spinner name="crescent"></ion-spinner>
+          <p>Finding recipes</p>
+        </div>
+      } @else if (errorMsg()) {
+        <div class="mx-state mx-state--error" role="alert">
+          <h3>Recipes didn't load</h3>
+          <p>{{ errorMsg() }}</p>
+          <ion-button fill="outline" class="mx-btn mx-btn--ghost" (click)="search()">Try again</ion-button>
+        </div>
+      } @else if (!query()) {
+        <div class="mx-state">
+          <h3>Start with a dish or an ingredient</h3>
+          <p>Type in the search field above, or pick one of the popular searches.</p>
+        </div>
+      } @else if (meals().length === 0) {
+        <div class="mx-state">
+          <h3>No recipes for “{{ query() }}”</h3>
+          <p>Check the spelling, or search a single ingredient such as “rice” or “egg”.</p>
+        </div>
+      } @else {
+        <div class="meal-grid">
+          @for (meal of meals(); track meal.idMeal; let first = $first) {
+            <a class="meal" [class.meal--featured]="first" [routerLink]="['/recipe', meal.idMeal]">
+              <div class="meal__photo">
+                <img
+                  [src]="meal.strMealThumb"
+                  [alt]="meal.strMeal"
+                  [attr.loading]="first ? 'eager' : 'lazy'"
+                  decoding="async"
+                />
+              </div>
+              <div class="meal__body">
+                @if (first) {
+                  <span class="meal__flag">Top result</span>
+                }
+                @if (meal.strCategory) {
+                  <span class="meal__tag">{{ meal.strCategory }}</span>
+                }
+                <h3>{{ meal.strMeal }}</h3>
+                @if (meal.strArea) {
+                  <p class="meal__area">{{ meal.strArea }} cuisine</p>
+                }
+                @if (first) {
+                  <span class="meal__cue">View recipe</span>
+                }
+              </div>
+            </a>
+          }
+        </div>
+      }
+    </section>
+  </main>
+</ion-content>

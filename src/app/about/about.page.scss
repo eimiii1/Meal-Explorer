@@ -1,0 +1,131 @@
+.about {
+  display: grid;
+  gap: var(--mx-s7);
+}
+
+.about-intro {
+  padding-top: var(--mx-s4);
+}
+
+.about-intro h1 {
+  font-size: clamp(2.75rem, 11vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.about-intro__text {
+  max-width: 52ch;
+  margin-top: var(--mx-s5);
+  color: var(--mx-muted);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.about-course {
+  display: inline-grid;
+  gap: 2px;
+  margin: var(--mx-s6) 0 0;
+  padding-left: var(--mx-s4);
+  border-left: 2px solid var(--mx-accent);
+}
+
+.about-course dt {
+  color: var(--mx-muted);
+  font-size: 0.875rem;
+}
+
+.about-course dd {
+  margin: 0;
+  font-family: var(--mx-font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.team__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--mx-s4);
+  padding-bottom: var(--mx-s3);
+  border-bottom: 1px solid var(--mx-line);
+}
+
+.team__head h2 {
+  font-size: 1.75rem;
+}
+
+.team__head span {
+  color: var(--mx-muted);
+  font-size: 0.875rem;
+}
+
+.team__list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.member {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--mx-s4);
+  padding: var(--mx-s5) 0;
+  border-bottom: 1px solid var(--mx-line);
+}
+
+.member__initial {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(var(--mx-accent-rgb), 0.7);
+  border-radius: 50%;
+  background: var(--mx-surface);
+  color: var(--mx-accent-text);
+  font-family: var(--mx-font-display);
+  font-size: 1.375rem;
+  font-style: italic;
+}
+
+.member h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.member p {
+  max-width: 46ch;
+  margin-top: var(--mx-s1);
+  color: var(--mx-muted);
+}
+
+.about-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mx-s5);
+  padding: var(--mx-s6) var(--mx-s5);
+  border: 1px solid var(--mx-line);
+  border-radius: var(--mx-r-lg);
+  background: var(--mx-surface);
+}
+
+.about-cta h2 {
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 860px) {
+  .team__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--mx-s7);
+  }
+
+  .about-cta {
+    padding: var(--mx-s7);
+  }
+}

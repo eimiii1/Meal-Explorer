@@ -1,0 +1,90 @@
+<app-page-header title="Recipe Details"></app-page-header>
+
+<ion-content class="details-page">
+  @if (loading()) {
+    <div class="mx-page mx-page--plain">
+      <div class="mx-state" role="status" aria-live="polite">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Loading the recipe</p>
+      </div>
+    </div>
+  } @else if (errorMsg()) {
+    <div class="mx-page mx-page--plain">
+      <div class="mx-state mx-state--error" role="alert">
+        <h2>The recipe didn't load</h2>
+        <p>{{ errorMsg() }}</p>
+        <ion-button fill="outline" class="mx-btn mx-btn--ghost" (click)="loadMeal()">Try again</ion-button>
+      </div>
+    </div>
+  } @else if (meal(); as currentMeal) {
+    <article class="mx-page mx-page--plain dish">
+      <header class="dish-hero">
+        <div class="dish-plate">
+          <img [src]="currentMeal.strMealThumb" [alt]="currentMeal.strMeal" />
+        </div>
+
+        <div class="dish-hero__copy">
+          <h1>{{ currentMeal.strMeal }}</h1>
+          <div class="dish-meta">
+            @if (currentMeal.strCategory) {
+              <ion-chip class="mx-chip">{{ currentMeal.strCategory }}</ion-chip>
+            }
+            @if (currentMeal.strArea) {
+              <ion-chip class="mx-chip">{{ currentMeal.strArea }} cuisine</ion-chip>
+            }
+          </div>
+          @if (currentMeal.strYoutube) {
+            <ion-button
+              fill="outline"
+              class="mx-btn mx-btn--ghost dish-video"
+              [href]="currentMeal.strYoutube"
+              target="_blank"
+              rel="noopener">
+              Watch the video
+            </ion-button>
+          }
+        </div>
+      </header>
+
+      <div class="dish-body">
+        <section class="dish-ingredients">
+          <div class="dish-section-head">
+            <h2>Ingredients</h2>
+            @if (ingredients().length > 0) {
+              <span>{{ ingredients().length }} items</span>
+            }
+          </div>
+          @if (ingredients().length > 0) {
+            <ul>
+              @for (item of ingredients(); track $index) {
+                <li>
+                  <label class="tick">
+                    <input type="checkbox" />
+                    <span class="tick__box" aria-hidden="true"></span>
+                    <span class="tick__text">{{ item }}</span>
+                  </label>
+                </li>
+              }
+            </ul>
+          } @else {
+            <p class="empty-ingredients">This recipe doesn't list its ingredients.</p>
+          }
+        </section>
+
+        <section class="dish-method">
+          <div class="dish-section-head">
+            <h2>Method</h2>
+          </div>
+          <p class="instructions">{{ currentMeal.strInstructions }}</p>
+        </section>
+      </div>
+    </article>
+  } @else {
+    <div class="mx-page mx-page--plain">
+      <div class="mx-state">
+        <h2>Recipe not found</h2>
+        <p>This recipe isn't in the collection any more. Go back and pick another.</p>
+      </div>
+    </div>
+  }
+</ion-content>

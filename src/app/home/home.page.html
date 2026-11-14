@@ -1,0 +1,68 @@
+<app-page-header title="Meal Explorer" [showBackButton]="false"></app-page-header>
+
+<ion-content class="home-page mx-has-rail">
+  <nav slot="fixed" class="mx-dock" aria-label="Main">
+    <a class="mx-dock__item" routerLink="/home" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-5H9v5H5a1 1 0 0 1-1-1z" />
+      </svg>
+      <span>Home</span>
+    </a>
+    <a class="mx-dock__item" routerLink="/recipes">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 16.5a7 7 0 0 1 14 0M12 9.5V7M3 19.5h18M4 16.5h16" />
+      </svg>
+      <span>Recipes</span>
+    </a>
+    <a class="mx-dock__item" routerLink="/about">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="9" cy="9" r="3" />
+        <path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 6.3a3 3 0 0 1 0 5.4M17.6 14.3a5.5 5.5 0 0 1 2.9 4.7" />
+      </svg>
+      <span>About</span>
+    </a>
+  </nav>
+
+  <main class="mx-page home">
+    <section class="home-hero">
+      <div class="home-hero__copy">
+        <h1>Tonight deserves a proper dinner.</h1>
+        <p class="home-hero__lede">
+          Search hundreds of dishes from kitchens around the world. Every recipe
+          comes with its ingredients measured out and the method written down.
+        </p>
+        <div class="home-hero__actions">
+          <ion-button routerLink="/recipes" class="mx-btn">Browse recipes</ion-button>
+          <a routerLink="/about" class="mx-link">About the project</a>
+        </div>
+      </div>
+
+      <div class="home-setting" aria-hidden="true">
+        <svg viewBox="0 0 480 400">
+          <circle class="home-setting__glow" cx="240" cy="200" r="150" />
+          <circle class="home-setting__rim" cx="240" cy="200" r="150" pathLength="1" />
+          <circle class="home-setting__well" cx="240" cy="200" r="104" pathLength="1" />
+          <path class="home-setting__cutlery" pathLength="1" d="M33 96v52a12 12 0 0 0 24 0V96M45 96v208" />
+          <path class="home-setting__cutlery" pathLength="1" d="M435 304V96c14 12 20 42 20 80 0 14-8 22-20 26" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="home-steps" aria-label="How it works">
+      <ol>
+        <li>
+          <h2>Search</h2>
+          <p>Type a dish or a single ingredient, like pasta, curry or salmon.</p>
+        </li>
+        <li>
+          <h2>Choose</h2>
+          <p>Browse the matches by photo, category and the cuisine they come from.</p>
+        </li>
+        <li>
+          <h2>Cook</h2>
+          <p>Tick off the ingredients as you gather them, then follow the method.</p>
+        </li>
+      </ol>
+    </section>
+  </main>
+</ion-content>

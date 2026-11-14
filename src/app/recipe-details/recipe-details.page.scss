@@ -1,0 +1,210 @@
+.dish {
+  display: grid;
+  gap: var(--mx-s7);
+}
+
+.dish-hero {
+  display: grid;
+  justify-items: center;
+  gap: var(--mx-s6);
+  padding-top: var(--mx-s4);
+  text-align: center;
+}
+
+.dish-plate {
+  width: clamp(220px, 68vw, 420px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--mx-surface);
+  box-shadow: 0 0 0 11px var(--mx-raised), 0 0 0 12px rgba(var(--mx-accent-rgb), 0.7),
+    0 40px 70px -28px rgba(0, 0, 0, 0.75);
+  animation: dish-serve 0.9s var(--mx-ease) both;
+}
+
+.dish-plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes dish-serve {
+  from {
+    opacity: 0;
+    transform: scale(0.92) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.dish-hero h1 {
+  max-width: 16ch;
+  font-size: clamp(2.25rem, 8.5vw, 4.25rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.dish-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--mx-s2);
+  margin-top: var(--mx-s5);
+}
+
+.dish-video {
+  margin-top: var(--mx-s5);
+}
+
+.dish-body {
+  display: grid;
+  gap: var(--mx-s7);
+}
+
+.dish-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--mx-s4);
+  padding-bottom: var(--mx-s3);
+  border-bottom: 1px solid var(--mx-line);
+}
+
+.dish-section-head h2 {
+  font-size: 1.75rem;
+}
+
+.dish-section-head span {
+  color: var(--mx-muted);
+  font-size: 0.875rem;
+}
+
+.dish-ingredients {
+  padding: var(--mx-s5);
+  border: 1px solid var(--mx-line);
+  border-radius: var(--mx-r-lg);
+  background: var(--mx-surface);
+}
+
+.dish-ingredients ul {
+  margin: var(--mx-s2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dish-ingredients li + li {
+  border-top: 1px solid var(--mx-line);
+}
+
+.tick {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--mx-s3);
+  min-height: 48px;
+  padding: var(--mx-s2) 0;
+  cursor: pointer;
+}
+
+.tick input {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  opacity: 0;
+}
+
+.tick__box {
+  position: relative;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--mx-line-strong);
+  border-radius: 50%;
+  transition: background-color var(--mx-fast) ease, border-color var(--mx-fast) ease;
+}
+
+.tick__box::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--mx-on-accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform var(--mx-fast) var(--mx-ease);
+}
+
+.tick__text {
+  transition: color var(--mx-fast) ease;
+}
+
+.tick input:checked ~ .tick__box {
+  border-color: var(--mx-accent);
+  background: var(--mx-accent);
+}
+
+.tick input:checked ~ .tick__box::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.tick input:checked ~ .tick__text {
+  color: var(--mx-faint);
+  text-decoration: line-through;
+}
+
+.tick input:focus-visible ~ .tick__box {
+  outline: 2px solid var(--mx-accent);
+  outline-offset: 3px;
+}
+
+.empty-ingredients {
+  margin-top: var(--mx-s4);
+  color: var(--mx-muted);
+}
+
+.instructions {
+  max-width: 64ch;
+  margin-top: var(--mx-s5);
+  color: var(--mx-text);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+@media (min-width: 900px) {
+  .dish-hero {
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-items: start;
+    align-items: center;
+    gap: var(--mx-s7);
+    text-align: left;
+  }
+
+  .dish-plate {
+    order: 2;
+    width: clamp(320px, 34vw, 440px);
+    margin-right: 12px;
+  }
+
+  .dish-meta {
+    justify-content: flex-start;
+  }
+
+  .dish-body {
+    grid-template-columns: 360px minmax(0, 1fr);
+    align-items: start;
+    gap: var(--mx-s7);
+  }
+
+  .dish-ingredients {
+    position: sticky;
+    top: var(--mx-s5);
+  }
+}

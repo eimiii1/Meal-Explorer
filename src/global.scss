@@ -1,0 +1,341 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+@import "@ionic/angular/css/core.css";
+
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+html,
+body {
+  background: var(--mx-bg);
+}
+
+body {
+  color: var(--mx-text);
+  font-family: var(--mx-font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--mx-font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(var(--mx-accent-rgb), 0.35);
+  color: var(--mx-text);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--mx-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+
+.mx-page {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: var(--mx-s6) var(--mx-gutter) calc(120px + env(safe-area-inset-bottom));
+}
+
+.mx-page--plain {
+  padding-bottom: calc(var(--mx-s8) + env(safe-area-inset-bottom));
+}
+
+.mx-kicker {
+  color: var(--mx-accent-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.mx-link {
+  color: var(--mx-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--mx-line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color var(--mx-fast) ease, color var(--mx-fast) ease;
+}
+
+.mx-link:hover {
+  color: var(--mx-accent-text);
+  text-decoration-color: var(--mx-accent);
+}
+
+/* ---------------------------------------------------------------- Nav dock
+ * A floating pill on phones. From 1024px it turns into a rail on the left.
+ * It sits in ion-content's "fixed" slot, so it stays put while content scrolls.
+ */
+
+nav.mx-dock {
+  position: absolute;
+  left: 50%;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  z-index: 20;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--mx-line-strong);
+  border-radius: var(--mx-r-pill);
+  background: rgba(var(--mx-surface-rgb), 0.84);
+  box-shadow: var(--mx-shadow);
+  transform: translateX(-50%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+.mx-dock__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--mx-r-pill);
+  color: var(--mx-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--mx-fast) ease, background-color var(--mx-fast) ease;
+}
+
+.mx-dock__item svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mx-dock__item:hover {
+  color: var(--mx-text);
+}
+
+.mx-dock__item[aria-current="page"] {
+  background: var(--mx-accent);
+  color: var(--mx-on-accent);
+}
+
+@media (min-width: 1024px) {
+  ion-content.mx-has-rail {
+    --padding-start: var(--mx-rail);
+  }
+
+  nav.mx-dock {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: column;
+    gap: 6px;
+    width: var(--mx-rail);
+    padding: var(--mx-s5) 10px;
+    border: 0;
+    border-right: 1px solid var(--mx-line);
+    border-radius: 0;
+    background: var(--mx-bg);
+    box-shadow: none;
+    transform: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .mx-dock__item {
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 4px;
+    border-radius: var(--mx-r-md);
+    font-size: 0.75rem;
+  }
+
+  .mx-dock__item svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mx-dock__item:hover {
+    background: rgba(var(--mx-text-rgb), 0.06);
+  }
+
+  .mx-dock__item[aria-current="page"] {
+    background: rgba(var(--mx-accent-rgb), 0.16);
+    color: var(--mx-accent-text);
+  }
+
+  .mx-page {
+    padding-top: var(--mx-s7);
+    padding-bottom: var(--mx-s8);
+  }
+}
+
+
+ion-button.mx-btn {
+  --background: var(--mx-accent);
+  --background-hover: #ffffff;
+  --background-hover-opacity: 0.16;
+  --background-activated: #000000;
+  --background-activated-opacity: 0.12;
+  --background-focused: #ffffff;
+  --background-focused-opacity: 0.16;
+  --color: var(--mx-on-accent);
+  --border-radius: var(--mx-r-pill);
+  --box-shadow: none;
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --ripple-color: var(--mx-on-accent);
+  height: 48px;
+  min-height: 48px;
+  margin: 0;
+  font-family: var(--mx-font-body);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+ion-button.mx-btn--ghost {
+  --background: transparent;
+  --background-hover: var(--mx-text);
+  --background-hover-opacity: 0.08;
+  --background-activated: var(--mx-text);
+  --background-focused: var(--mx-text);
+  --color: var(--mx-text);
+  --border-color: var(--mx-line-strong);
+  --border-style: solid;
+  --border-width: 1px;
+  --ripple-color: var(--mx-text);
+  font-weight: 600;
+}
+
+ion-searchbar.mx-search {
+  --background: var(--mx-surface);
+  --color: var(--mx-text);
+  --placeholder-color: var(--mx-muted);
+  --placeholder-opacity: 1;
+  --icon-color: var(--mx-accent-text);
+  --clear-button-color: var(--mx-muted);
+  --border-radius: var(--mx-r-pill);
+  --box-shadow: none;
+  padding: 0;
+}
+
+ion-searchbar.mx-search .searchbar-input {
+  padding-top: 13px;
+  padding-bottom: 13px;
+  border: 1px solid var(--mx-line-strong);
+  font-size: 1rem;
+  transition: border-color var(--mx-fast) ease, box-shadow var(--mx-fast) ease;
+}
+
+ion-searchbar.mx-search .searchbar-search-icon {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+ion-searchbar.mx-search.searchbar-has-focus .searchbar-input {
+  border-color: var(--mx-accent);
+  box-shadow: 0 0 0 4px rgba(var(--mx-accent-rgb), 0.18);
+}
+
+ion-chip.mx-chip {
+  --background: transparent;
+  --color: var(--mx-text);
+  height: 32px;
+  margin: 0;
+  padding-inline: 14px;
+  border: 1px solid var(--mx-line-strong);
+  border-radius: var(--mx-r-pill);
+  font-family: var(--mx-font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: default;
+}
+
+ion-spinner {
+  --color: var(--mx-accent);
+  width: 32px;
+  height: 32px;
+}
+
+.mx-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--mx-s3);
+  padding: var(--mx-s7) var(--mx-s5);
+  border: 1px solid var(--mx-line);
+  border-radius: var(--mx-r-lg);
+  background: var(--mx-surface);
+  text-align: center;
+}
+
+.mx-state h2,
+.mx-state h3 {
+  font-size: 1.5rem;
+}
+
+.mx-state p {
+  max-width: 44ch;
+  color: var(--mx-muted);
+}
+
+.mx-state ion-button {
+  margin-top: var(--mx-s3);
+}
+
+.mx-state--error {
+  border-color: rgba(var(--ion-color-danger-rgb), 0.45);
+}
+
+.mx-state--error h2,
+.mx-state--error h3 {
+  color: var(--mx-danger);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

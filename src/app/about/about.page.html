@@ -1,0 +1,60 @@
+<app-page-header title="About Our Group" [showBackButton]="false"></app-page-header>
+
+<ion-content class="about-page mx-has-rail">
+  <nav slot="fixed" class="mx-dock" aria-label="Main">
+    <a class="mx-dock__item" routerLink="/home">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-5H9v5H5a1 1 0 0 1-1-1z" />
+      </svg>
+      <span>Home</span>
+    </a>
+    <a class="mx-dock__item" routerLink="/recipes">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 16.5a7 7 0 0 1 14 0M12 9.5V7M3 19.5h18M4 16.5h16" />
+      </svg>
+      <span>Recipes</span>
+    </a>
+    <a class="mx-dock__item" routerLink="/about" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="9" cy="9" r="3" />
+        <path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 6.3a3 3 0 0 1 0 5.4M17.6 14.3a5.5 5.5 0 0 1 2.9 4.7" />
+      </svg>
+      <span>About</span>
+    </a>
+  </nav>
+
+  <main class="mx-page about">
+    <section class="about-intro">
+      <h1>{{ projectTitle }}</h1>
+      <p class="about-intro__text">{{ description }}</p>
+      <dl class="about-course">
+        <dt>Course, year and section</dt>
+        <dd>{{ course }}</dd>
+      </dl>
+    </section>
+
+    <section class="team">
+      <div class="team__head">
+        <h2>The team</h2>
+        <span>{{ members.length }} people</span>
+      </div>
+
+      <ul class="team__list">
+        @for (member of members; track member.name) {
+          <li class="member">
+            <span class="member__initial" aria-hidden="true">{{ member.name.slice(0, 1) }}</span>
+            <div>
+              <h3>{{ member.name }}</h3>
+              <p>{{ member.role }}</p>
+            </div>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="about-cta">
+      <h2>Ready to cook something?</h2>
+      <ion-button routerLink="/recipes" class="mx-btn">Browse recipes</ion-button>
+    </section>
+  </main>
+</ion-content>
